@@ -3,8 +3,8 @@
 }
 
 :root {
-  color: #111111;
-  background: #f7f7f4;
+  color: #101214;
+  background: #f6f5f2;
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -17,7 +17,7 @@
 
 body {
   margin: 0;
-  background: #f7f7f4;
+  background: #f6f5f2;
 }
 
 button,
@@ -35,12 +35,12 @@ button {
   width: min(100%, 480px);
   min-height: 100vh;
   margin: 0 auto;
-  padding: 28px 18px 80px;
+  padding: 28px 18px 84px;
 }
 
-/* 상단 타이포그래피 */
+/* 상단 */
 .hero {
-  padding: 10px 2px 28px;
+  padding: 8px 2px 28px;
   margin-bottom: 8px;
   background: transparent;
   border: 0;
@@ -49,7 +49,7 @@ button {
 
 .eyebrow {
   margin: 0 0 12px;
-  color: #777777;
+  color: #7b8087;
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -58,23 +58,23 @@ button {
 
 .hero h1 {
   margin: 0;
-  color: #111111;
+  color: #101214;
   font-size: clamp(2.7rem, 13vw, 4.5rem);
   font-weight: 900;
   line-height: 0.94;
-  letter-spacing: -0.085em;
+  letter-spacing: -0.09em;
 }
 
 .subtitle {
   margin: 18px 0 0;
-  color: #555555;
+  color: #5f6368;
   font-size: 0.96rem;
   font-weight: 500;
   line-height: 1.75;
   letter-spacing: -0.02em;
 }
 
-/* 검색 영역 */
+/* 검색 */
 .toolbar {
   position: sticky;
   top: 0;
@@ -84,20 +84,20 @@ button {
   gap: 8px;
   padding: 12px 0 16px;
   margin-bottom: 10px;
-  background: rgba(247, 247, 244, 0.94);
+  background: rgba(246, 245, 242, 0.94);
   backdrop-filter: blur(14px);
-  border-bottom: 1px solid #e4e4df;
+  border-bottom: 1px solid #dfddd7;
 }
 
 .searchInput {
   grid-column: 1 / -1;
   width: 100%;
   height: 52px;
-  border: 1px solid #d8d8d2;
+  border: 1px solid #d7d4ce;
   border-radius: 0;
   background: #ffffff;
   padding: 0 14px;
-  color: #111111;
+  color: #101214;
   outline: none;
   font-size: 1rem;
   font-weight: 600;
@@ -105,18 +105,18 @@ button {
 }
 
 .searchInput::placeholder {
-  color: #999999;
+  color: #9aa0a6;
   font-weight: 400;
 }
 
 .searchInput:focus {
-  border-color: #111111;
+  border-color: #2563eb;
 }
 
 .rateControl {
   display: grid;
   gap: 5px;
-  color: #777777;
+  color: #7b8087;
   font-size: 0.74rem;
   font-weight: 700;
   letter-spacing: -0.01em;
@@ -125,11 +125,11 @@ button {
 .rateControl select {
   width: 100%;
   height: 44px;
-  border: 1px solid #d8d8d2;
+  border: 1px solid #d7d4ce;
   border-radius: 0;
   background: #ffffff;
   padding: 0 10px;
-  color: #111111;
+  color: #101214;
   outline: none;
   font-weight: 700;
 }
@@ -137,9 +137,9 @@ button {
 .pill {
   height: 44px;
   align-self: end;
-  border: 1px solid #111111;
+  border: 1px solid #101214;
   border-radius: 0;
-  background: #111111;
+  background: #101214;
   color: #ffffff;
   font-size: 0.86rem;
   font-weight: 800;
@@ -165,10 +165,10 @@ button {
   min-width: 122px;
   max-width: 168px;
   min-height: 48px;
-  border: 1px solid #d8d8d2;
+  border: 1px solid #d7d4ce;
   border-radius: 0;
   background: #ffffff;
-  color: #333333;
+  color: #2d3136;
   padding: 9px 11px;
   text-align: left;
   box-shadow: none;
@@ -189,22 +189,22 @@ button {
 .categoryButton strong {
   display: block;
   margin-top: 2px;
-  color: #888888;
+  color: #8a9097;
   font-size: 0.72rem;
   font-weight: 700;
 }
 
 .categoryButton.selected {
-  border-color: #111111;
-  background: #111111;
+  border-color: #101214;
+  background: #101214;
   color: #ffffff;
 }
 
 .categoryButton.selected strong {
-  color: #cccccc;
+  color: #d2d6db;
 }
 
-/* 섹션 제목 */
+/* 섹션 */
 .sectionHeader {
   display: flex;
   align-items: flex-end;
@@ -212,12 +212,12 @@ button {
   gap: 12px;
   margin: 14px 0 14px;
   padding-bottom: 12px;
-  border-bottom: 1px solid #d8d8d2;
+  border-bottom: 1px solid #dfddd7;
 }
 
 .sectionHeader h2 {
   margin: 0;
-  color: #111111;
+  color: #101214;
   font-size: 1.35rem;
   font-weight: 900;
   line-height: 1.22;
@@ -226,7 +226,7 @@ button {
 
 .sectionHeader p {
   margin: 6px 0 0;
-  color: #666666;
+  color: #5f6368;
   font-size: 0.9rem;
   line-height: 1.5;
   letter-spacing: -0.02em;
@@ -235,10 +235,10 @@ button {
 .countBadge {
   flex: 0 0 auto;
   padding: 6px 9px;
-  border: 1px solid #d8d8d2;
+  border: 1px solid #d7d4ce;
   border-radius: 0;
   background: transparent;
-  color: #333333;
+  color: #35506b;
   font-size: 0.78rem;
   font-weight: 800;
 }
@@ -250,7 +250,7 @@ button {
 }
 
 .phraseCard {
-  border: 1px solid #d8d8d2;
+  border: 1px solid #d7d4ce;
   border-radius: 0;
   background: #ffffff;
   box-shadow: none;
@@ -258,8 +258,8 @@ button {
 }
 
 .phraseCard.completed {
-  opacity: 0.54;
-  background: #f1f1ed;
+  opacity: 0.56;
+  background: #f0efea;
 }
 
 .cardTop {
@@ -273,7 +273,7 @@ button {
 .categoryLabel {
   min-width: 0;
   overflow: hidden;
-  color: #777777;
+  color: #7b8087;
   font-size: 0.74rem;
   font-weight: 700;
   white-space: nowrap;
@@ -298,28 +298,28 @@ button {
 .iconButton {
   width: 34px;
   height: 34px;
-  border: 1px solid #d8d8d2;
-  color: #777777;
+  border: 1px solid #d7d4ce;
+  color: #7b8087;
   background: #ffffff;
 }
 
 .iconButton.active {
-  color: #111111;
-  background: #eeeeea;
+  color: #101214;
+  background: #eceae4;
 }
 
 .doneButton {
   height: 34px;
   padding: 0 10px;
-  border: 1px solid #d8d8d2;
+  border: 1px solid #d7d4ce;
   background: #ffffff;
-  color: #666666;
+  color: #666b72;
   font-size: 0.76rem;
 }
 
 .doneButton.done {
-  border-color: #111111;
-  background: #111111;
+  border-color: #101214;
+  background: #101214;
   color: #ffffff;
 }
 
@@ -333,19 +333,19 @@ button {
 .phraseBlock + .phraseBlock {
   margin-top: 24px;
   padding-top: 22px;
-  border-top: 1px solid #e4e4df;
+  border-top: 1px solid #e5e2dc;
 }
 
 .label {
   margin: 0 0 8px;
-  color: #888888;
+  color: #8a9097;
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-/* 핵심 타이포그래피 */
+/* 핵심 타이포 */
 .shortEnglish,
 .longEnglish {
   margin: 0;
@@ -354,20 +354,20 @@ button {
 }
 
 .shortEnglish {
-  color: #050505;
-  font-size: clamp(1.9rem, 8.8vw, 2.75rem);
+  color: #101214;
+  font-size: clamp(1.95rem, 8.8vw, 2.8rem);
   font-weight: 950;
 }
 
 .longEnglish {
-  color: #3f3f3f;
-  font-size: clamp(1.35rem, 6.2vw, 1.9rem);
+  color: #35506b;
+  font-size: clamp(1.38rem, 6.2vw, 1.95rem);
   font-weight: 850;
 }
 
 .korean {
   margin: 13px 0 0;
-  color: #555555;
+  color: #5f6368;
   font-size: 0.98rem;
   line-height: 1.58;
   font-weight: 500;
@@ -376,7 +376,7 @@ button {
 
 .pronunciation {
   margin: 7px 0 0;
-  color: #999999;
+  color: #9aa0a6;
   font-size: 0.9rem;
   line-height: 1.45;
   font-weight: 500;
@@ -388,16 +388,16 @@ button {
   width: 100%;
   height: 46px;
   margin-top: 15px;
-  border: 1px solid #111111;
-  background: #111111;
+  border: 1px solid #101214;
+  background: #101214;
   color: #ffffff;
   font-size: 0.9rem;
   letter-spacing: -0.02em;
 }
 
 .speakButton.secondary {
-  border-color: #3f3f3f;
-  background: #3f3f3f;
+  border-color: #35506b;
+  background: #35506b;
   color: #ffffff;
 }
 
@@ -406,15 +406,15 @@ button {
   gap: 10px;
   margin-top: 18px;
   padding-top: 16px;
-  border-top: 1px solid #e4e4df;
+  border-top: 1px solid #e5e2dc;
 }
 
 .repeatButton {
   width: 100%;
   height: 46px;
-  border: 1px solid #d8d8d2;
+  border: 1px solid #d7d4ce;
   background: #ffffff;
-  color: #222222;
+  color: #22262a;
   font-size: 0.9rem;
 }
 
@@ -428,17 +428,17 @@ button {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #d8d8d2;
+  background: #d7d4ce;
 }
 
 .dot.filled {
-  background: #111111;
+  background: #35506b;
 }
 
 .loadingCard {
   margin: 80px auto;
   padding: 28px;
-  border: 1px solid #d8d8d2;
+  border: 1px solid #d7d4ce;
   background: #ffffff;
   text-align: center;
   font-weight: 800;
