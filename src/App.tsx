@@ -37,7 +37,7 @@ export default function App() {
   const [repeatCounts, setRepeatCounts] = useState<Record<string, number>>({});
 
   useEffect(() => {
-    fetch("/travel_english_app_data.min.json")
+    fetch(`${import.meta.env.BASE_URL}travel_english_app_data.min.json`)
       .then((res) => res.json())
       .then((data) => setDataset(data))
       .catch((error) => {
