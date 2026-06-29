@@ -59,16 +59,16 @@ button {
 .hero h1 {
   margin: 0;
   color: #101214;
-  font-size: clamp(2.7rem, 13vw, 4.5rem);
+  font-size: clamp(2.15rem, 10vw, 3.25rem);
   font-weight: 900;
-  line-height: 0.94;
-  letter-spacing: -0.09em;
+  line-height: 1.02;
+  letter-spacing: -0.065em;
 }
 
 .subtitle {
-  margin: 18px 0 0;
+  margin: 14px 0 0;
   color: #5f6368;
-  font-size: 0.96rem;
+  font-size: 0.92rem;
   font-weight: 500;
   line-height: 1.75;
   letter-spacing: -0.02em;
@@ -450,7 +450,7 @@ button {
   }
 
   .hero h1 {
-    font-size: 2.55rem;
+    font-size: 2.1rem;
   }
 
   .toolbar {

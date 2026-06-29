@@ -107,10 +107,10 @@ export default function App() {
   return (
     <main className="appShell">
       <header className="hero">
-        <p className="eyebrow">초보 해외여행 영어</p>
-        <h1>발음·억양 연습 앱</h1>
+        <p className="eyebrow">여행 영어</p>
+        <h1>발음 연습</h1>
         <p className="subtitle">
-          짧은 표현부터 듣고, 3번 따라 말한 뒤 긴 표현으로 확장해보세요.
+          듣고, 따라 말하고, 익히세요.
         </p>
       </header>
 
@@ -119,7 +119,7 @@ export default function App() {
           className="searchInput"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-          placeholder="hotel, passport, wifi, taxi, 택시 검색"
+          placeholder="검색어 입력"
         />
 
         <div className="rateControl">
@@ -136,7 +136,7 @@ export default function App() {
         </div>
 
         <button className="pill" onClick={() => setQuery("")}>
-          검색 초기화
+          초기화
         </button>
       </section>
 
@@ -169,9 +169,9 @@ export default function App() {
 
       <section className="sectionHeader">
         <div>
-          <h2>{query ? `"${query}" 검색 결과` : "전체 표현"}</h2>
+          <h2>{query ? `"${query}"` : "전체 표현"}</h2>
           <p>
-            현재 표시되는 표현: <strong>{filteredItems.length}</strong>개
+            표현 <strong>{filteredItems.length}</strong>개
           </p>
         </div>
         <span className="countBadge">{filteredItems.length}개</span>
