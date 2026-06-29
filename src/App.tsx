@@ -1,6 +1,37 @@
 import React, { useEffect, useMemo, useState } from "react";
 import type { TravelEnglishDataset, TravelEnglishItem } from "./data/types";
 
+type Language = "english" | "japanese";
+
+const languageConfig = {
+  english: {
+    label: "영어",
+    eyebrow: "여행 영어",
+    title: "발음 연습",
+    subtitle: "듣고, 따라 말하고, 익히세요.",
+    dataFile: "travel_english_app_data.min.json",
+    ttsLanguage: "en-US",
+  },
+  japanese: {
+    label: "일본어",
+    eyebrow: "여행 일본어",
+    title: "말하기 연습",
+    subtitle: "천천히 듣고, 자연스럽게 익히세요.",
+    dataFile: "travel_japanese_app_data.min.json",
+    ttsLanguage: "ja-JP",
+  },
+} satisfies Record<
+  Language,
+  {
+    label: string;
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    dataFile: string;
+    ttsLanguage: string;
+  }
+>;
+
 function normalizeSearch(value: unknown) {
   return String(value ?? "")
     .toLowerCase()
@@ -8,10 +39,10 @@ function normalizeSearch(value: unknown) {
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/wi[-_\s]?fi/g, "wifi")
     .replace(/e[-_\s]?mail/g, "email")
-    .replace(/[^a-z0-9가-힣]/g, "");
+    .replace(/[^a-z0-9가-힣ぁ-んァ-ン一-龯々ー]/g, "");
 }
 
-function speak(text: string, rate = 0.82) {
+function speak(text: string, rate = 0.82, language = "en-US") {
   if (!("speechSynthesis" in window)) {
     alert("이 브라우저는 음성 듣기를 지원하지 않습니다.");
     return;
@@ -20,7 +51,7 @@ function speak(text: string, rate = 0.82) {
   window.speechSynthesis.cancel();
 
   const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = "en-US";
+  utterance.lang = language;
   utterance.rate = rate;
   utterance.pitch = 1;
 
@@ -28,6 +59,9 @@ function speak(text: string, rate = 0.82) {
 }
 
 export default function App() {
+  const [language, setLanguage] = useState<Language>(() =>
+    localStorage.getItem("travel-language") === "japanese" ? "japanese" : "english"
+  );
   const [dataset, setDataset] = useState<TravelEnglishDataset | null>(null);
   const [selectedCategoryId, setSelectedCategoryId] = useState("all");
   const [query, setQuery] = useState("");
@@ -36,15 +70,23 @@ export default function App() {
   const [completed, setCompleted] = useState<string[]>([]);
   const [repeatCounts, setRepeatCounts] = useState<Record<string, number>>({});
 
+  const config = languageConfig[language];
+
   useEffect(() => {
-    fetch(`${import.meta.env.BASE_URL}travel_english_app_data.min.json`)
+    document.body.classList.toggle("japaneseTheme", language === "japanese");
+    localStorage.setItem("travel-language", language);
+    setDataset(null);
+    setSelectedCategoryId("all");
+    setQuery("");
+
+    fetch(`${import.meta.env.BASE_URL}${languageConfig[language].dataFile}`)
       .then((res) => res.json())
       .then((data) => setDataset(data))
       .catch((error) => {
         console.error(error);
         alert("학습 데이터를 불러오지 못했습니다.");
       });
-  }, []);
+  }, [language]);
 
   const categories = dataset?.categories ?? [];
 
@@ -98,21 +140,31 @@ export default function App() {
 
   if (!dataset) {
     return (
-      <main className="appShell">
+      <main className={language === "japanese" ? "appShell japaneseApp" : "appShell"}>
         <section className="loadingCard">학습 데이터를 불러오는 중입니다...</section>
       </main>
     );
   }
 
   return (
-    <main className="appShell">
+    <main className={language === "japanese" ? "appShell japaneseApp" : "appShell"}>
       <header className="hero">
-        <p className="eyebrow">여행 영어</p>
-        <h1>발음 연습</h1>
-        <p className="subtitle">
-          듣고, 따라 말하고, 익히세요.
-        </p>
+        <p className="eyebrow">{config.eyebrow}</p>
+        <h1>{config.title}</h1>
+        <p className="subtitle">{config.subtitle}</p>
       </header>
+
+      <section className="languageSwitch" aria-label="언어 선택">
+        {(["english", "japanese"] as Language[]).map((item) => (
+          <button
+            key={item}
+            className={language === item ? "languageButton active" : "languageButton"}
+            onClick={() => setLanguage(item)}
+          >
+            {languageConfig[item].label}
+          </button>
+        ))}
+      </section>
 
       <section className="toolbar">
         <input
@@ -186,12 +238,13 @@ export default function App() {
         ) : (
           filteredItems.map((item) => (
             <PhraseCard
-              key={item.id}
+              key={`${language}-${item.id}`}
               item={item}
               isFavorite={favorites.includes(item.id)}
               isCompleted={completed.includes(item.id)}
               repeatCount={repeatCounts[item.id] ?? 0}
               speechRate={speechRate}
+              ttsLanguage={config.ttsLanguage}
               onFavorite={() => toggleFavorite(item.id)}
               onCompleted={() => toggleCompleted(item.id)}
               onRepeat={() => addRepeat(item.id)}
@@ -209,6 +262,7 @@ function PhraseCard({
   isCompleted,
   repeatCount,
   speechRate,
+  ttsLanguage,
   onFavorite,
   onCompleted,
   onRepeat,
@@ -218,6 +272,7 @@ function PhraseCard({
   isCompleted: boolean;
   repeatCount: number;
   speechRate: number;
+  ttsLanguage: string;
   onFavorite: () => void;
   onCompleted: () => void;
   onRepeat: () => void;
@@ -253,7 +308,7 @@ function PhraseCard({
         <p className="pronunciation">{item.pronunciationKoShort}</p>
         <button
           className="speakButton"
-          onClick={() => speak(item.audioTextShort || item.shortEnglish, speechRate)}
+          onClick={() => speak(item.audioTextShort || item.shortEnglish, speechRate, ttsLanguage)}
         >
           ▶ 짧은 표현 듣기
         </button>
@@ -266,7 +321,7 @@ function PhraseCard({
         <p className="pronunciation">{item.pronunciationKoLong}</p>
         <button
           className="speakButton secondary"
-          onClick={() => speak(item.audioTextLong || item.longEnglish, speechRate)}
+          onClick={() => speak(item.audioTextLong || item.longEnglish, speechRate, ttsLanguage)}
         >
           ▶ 긴 표현 듣기
         </button>
@@ -289,3 +344,4 @@ function PhraseCard({
     </article>
   );
 }
+

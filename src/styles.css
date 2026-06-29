@@ -469,3 +469,103 @@ button {
     font-size: 1.25rem;
   }
 }
+/* language switch + japanese theme */
+.languageSwitch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 0 0 14px;
+}
+
+.languageButton {
+  height: 42px;
+  border: 1px solid #d7d4ce;
+  border-radius: 0;
+  background: #ffffff;
+  color: #5f6368;
+  font-size: 0.86rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.languageButton.active {
+  border-color: #101214;
+  background: #101214;
+  color: #ffffff;
+}
+
+body.japaneseTheme {
+  background: #f8f5f1;
+}
+
+body.japaneseTheme .toolbar {
+  background: rgba(248, 245, 241, 0.94);
+  border-bottom-color: #ded8d0;
+}
+
+body.japaneseTheme .searchInput,
+body.japaneseTheme .rateControl select,
+body.japaneseTheme .categoryButton,
+body.japaneseTheme .phraseCard,
+body.japaneseTheme .iconButton,
+body.japaneseTheme .doneButton,
+body.japaneseTheme .repeatButton,
+body.japaneseTheme .countBadge {
+  border-color: #ded8d0;
+}
+
+body.japaneseTheme .searchInput:focus {
+  border-color: #b75c5c;
+}
+
+body.japaneseTheme .languageButton.active,
+body.japaneseTheme .categoryButton.selected,
+body.japaneseTheme .doneButton.done {
+  border-color: #b75c5c;
+  background: #b75c5c;
+  color: #ffffff;
+}
+
+body.japaneseTheme .categoryButton.selected strong {
+  color: #f4ddda;
+}
+
+body.japaneseTheme .hero h1,
+body.japaneseTheme .sectionHeader h2 {
+  color: #2f3a4a;
+}
+
+body.japaneseTheme .shortEnglish {
+  color: #2f3a4a;
+}
+
+body.japaneseTheme .longEnglish {
+  color: #8a4a45;
+}
+
+body.japaneseTheme .korean {
+  color: #5f6368;
+}
+
+body.japaneseTheme .pronunciation {
+  color: #9a8f86;
+}
+
+body.japaneseTheme .speakButton {
+  border-color: #b75c5c;
+  background: #b75c5c;
+}
+
+body.japaneseTheme .speakButton.secondary {
+  border-color: #8a4a45;
+  background: #8a4a45;
+}
+
+body.japaneseTheme .countBadge {
+  color: #8a4a45;
+}
+
+body.japaneseTheme .dot.filled {
+  background: #8a4a45;
+}
+
