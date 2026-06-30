@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travel Language UI Sample</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(49, 89, 135, 0.18), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(232, 142, 169, 0.16), transparent 32%),
+        #f5f1ea;
+      color: #1f2933;
+      padding: 28px 16px 40px;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .top {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.72);
+      box-shadow: 0 12px 30px rgba(31, 41, 51, 0.08);
+      font-size: 13px;
+      color: #667085;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(26px, 5vw, 42px);
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+    }
+
+    .desc {
+      margin: 12px auto 0;
+      max-width: 720px;
+      color: #667085;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .samples {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      align-items: start;
+    }
+
+    .phone {
+      min-height: 720px;
+      border-radius: 38px;
+      overflow: hidden;
+      box-shadow:
+        0 30px 80px rgba(18, 30, 45, 0.18),
+        inset 0 0 0 1px rgba(255,255,255,0.52);
+      position: relative;
+    }
+
+    .phone.english {
+      background:
+        linear-gradient(145deg, rgba(16, 42, 77, 0.96), rgba(32, 76, 126, 0.94)),
+        #183b66;
+      color: #f7fbff;
+    }
+
+    .phone.japanese {
+      background:
+        linear-gradient(145deg, rgba(255, 248, 249, 0.98), rgba(249, 224, 232, 0.96)),
+        #fff6f8;
+      color: #4b3039;
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .english::before {
+      background:
+        radial-gradient(circle at 18% 12%, rgba(255,255,255,0.13), transparent 22%),
+        linear-gradient(135deg, rgba(255,255,255,0.06) 0 18%, transparent 18% 100%);
+    }
+
+    .japanese::before {
+      background:
+        radial-gradient(circle at 76% 10%, rgba(255, 145, 174, 0.20), transparent 20%),
+        radial-gradient(circle at 18% 82%, rgba(255, 255, 255, 0.62), transparent 24%);
+    }
+
+    .screen {
+      position: relative;
+      padding: 26px 22px;
+      min-height: 720px;
+    }
+
+    .app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .english .mark {
+      background: linear-gradient(145deg, #dcecff, #86b7f2);
+      color: #102a4d;
+      box-shadow: 0 12px 28px rgba(3, 18, 40, 0.32);
+    }
+
+    .japanese .mark {
+      background: linear-gradient(145deg, #ffffff, #ffd8e3);
+      color: #b65372;
+      box-shadow: 0 14px 30px rgba(184, 76, 111, 0.16);
+    }
+
+    .brand-title {
+      font-size: 17px;
+      font-weight: 850;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-sub {
+      margin-top: 2px;
+      font-size: 12px;
+      opacity: 0.72;
+    }
+
+    .pill {
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 800;
+      font-size: 12px;
+    }
+
+    .english .pill {
+      color: #dcecff;
+      background: rgba(255,255,255,0.11);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.16);
+    }
+
+    .japanese .pill {
+      color: #9a4661;
+      background: rgba(255,255,255,0.78);
+      box-shadow: inset 0 0 0 1px rgba(214, 130, 157, 0.18);
+    }
+
+    .hero-card {
+      border-radius: 32px;
+      padding: 24px 22px;
+      margin-bottom: 18px;
+    }
+
+    .english .hero-card {
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.15), rgba(255,255,255,0.07));
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.16),
+        0 22px 50px rgba(3, 18, 40, 0.26);
+    }
+
+    .japanese .hero-card {
+      background: rgba(255,255,255,0.76);
+      box-shadow:
+        inset 0 0 0 1px rgba(221, 152, 174, 0.16),
+        0 22px 46px rgba(184, 76, 111, 0.13);
+    }
+
+    .section-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      font-weight: 800;
+      opacity: 0.78;
+    }
+
+    .progress {
+      width: 92px;
+      height: 8px;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .english .progress {
+      background: rgba(255,255,255,0.18);
+    }
+
+    .japanese .progress {
+      background: rgba(201, 104, 135, 0.13);
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 62%;
+      border-radius: 999px;
+    }
+
+    .english .progress span {
+      background: #8ec5ff;
+    }
+
+    .japanese .progress span {
+      background: #ef9eb8;
+    }
+
+    .phrase-main {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 38px);
+      line-height: 1.18;
+      font-weight: 900;
+      letter-spacing: -0.045em;
+    }
+
+    .japanese .phrase-main {
+      font-weight: 760;
+      letter-spacing: -0.03em;
+    }
+
+    .phrase-sub {
+      margin: 14px 0 0;
+      font-size: 15px;
+      line-height: 1.55;
+      opacity: 0.78;
+    }
+
+    .pron {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 22px;
+      font-size: 15px;
+      line-height: 1.5;
+      font-weight: 750;
+    }
+
+    .english .pron {
+      color: #dcecff;
+      background: rgba(3, 18, 40, 0.26);
+    }
+
+    .japanese .pron {
+      color: #9a4661;
+      background: #fff3f6;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 22px;
+      padding: 16px 12px;
+      font-size: 15px;
+      font-weight: 850;
+      min-height: 58px;
+    }
+
+    .english .btn.primary {
+      color: #102a4d;
+      background: linear-gradient(145deg, #dcecff, #8ec5ff);
+      box-shadow: 0 16px 28px rgba(0, 19, 46, 0.28);
+    }
+
+    .english .btn.secondary {
+      color: #e8f2ff;
+      background: rgba(255,255,255,0.12);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.16);
+    }
+
+    .japanese .btn.primary {
+      color: #7e334c;
+      background: linear-gradient(145deg, #ffffff, #ffc6d7);
+      box-shadow: 0 16px 28px rgba(184, 76, 111, 0.16);
+    }
+
+    .japanese .btn.secondary {
+      color: #9a4661;
+      background: rgba(255,255,255,0.72);
+      box-shadow: inset 0 0 0 1px rgba(214, 130, 157, 0.18);
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .category {
+      border-radius: 24px;
+      padding: 16px;
+      min-height: 104px;
+    }
+
+    .english .category {
+      background: rgba(255,255,255,0.10);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.13);
+    }
+
+    .japanese .category {
+      background: rgba(255,255,255,0.68);
+      box-shadow: inset 0 0 0 1px rgba(214, 130, 157, 0.14);
+    }
+
+    .category strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 8px;
+      letter-spacing: -0.03em;
+    }
+
+    .category span {
+      font-size: 12px;
+      line-height: 1.45;
+      opacity: 0.72;
+    }
+
+    .bottom-nav {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 22px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      padding: 10px;
+      border-radius: 26px;
+    }
+
+    .english .bottom-nav {
+      background: rgba(3, 18, 40, 0.34);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
+    }
+
+    .japanese .bottom-nav {
+      background: rgba(255,255,255,0.74);
+      box-shadow: inset 0 0 0 1px rgba(214, 130, 157, 0.15);
+    }
+
+    .nav-item {
+      border-radius: 18px;
+      padding: 12px 8px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 800;
+      opacity: 0.74;
+    }
+
+    .english .nav-item.active {
+      background: rgba(255,255,255,0.16);
+      opacity: 1;
+    }
+
+    .japanese .nav-item.active {
+      background: #fff1f5;
+      opacity: 1;
+      color: #a44762;
+    }
+
+    .sample-note {
+      margin-top: 22px;
+      text-align: center;
+      font-size: 14px;
+      color: #667085;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 840px) {
+      .samples {
+        grid-template-columns: 1fr;
+      }
+
+      .phone {
+        max-width: 430px;
+        margin: 0 auto;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="top">
+      <div class="eyebrow">UI Redesign Sample · English / Japanese</div>
+      <h1>여행 회화 앱 디자인 샘플</h1>
+      <p class="desc">
+        실제 앱을 수정하기 전, 영어와 일본어의 분위기를 완전히 다르게 잡은 샘플입니다.
+        영어는 블루 계열의 묵직하고 터프한 느낌, 일본어는 핑크 계열의 섬세하고 부드러운 느낌입니다.
+      </p>
+    </section>
+
+    <section class="samples">
+      <article class="phone english">
+        <div class="screen">
+          <header class="app-header">
+            <div class="brand">
+              <div class="mark">EN</div>
+              <div>
+                <div class="brand-title">Travel English</div>
+                <div class="brand-sub">Bold · Clear · American tone</div>
+              </div>
+            </div>
+            <button class="pill">BLUE MODE</button>
+          </header>
+
+          <section class="hero-card">
+            <div class="section-label">
+              <span>오늘의 핵심 문장</span>
+              <span class="progress"><span></span></span>
+            </div>
+            <h2 class="phrase-main">Could you help me?</h2>
+            <p class="phrase-sub">
+              실전 여행 상황에서 바로 꺼내 쓰는 짧고 강한 표현입니다.
+            </p>
+            <div class="pron">쿠드 유 헬프 미?</div>
+          </section>
+
+          <div class="actions">
+            <button class="btn primary">▶ 듣고 따라하기</button>
+            <button class="btn secondary">↻ 3번 반복</button>
+          </div>
+
+          <section class="category-grid">
+            <div class="category">
+              <strong>Airport</strong>
+              <span>입국심사, 수하물, 탑승구 표현</span>
+            </div>
+            <div class="category">
+              <strong>Hotel</strong>
+              <span>체크인, 룸서비스, 문제 해결</span>
+            </div>
+            <div class="category">
+              <strong>Restaurant</strong>
+              <span>주문, 맛 표현, 계산 요청</span>
+            </div>
+            <div class="category">
+              <strong>Emergency</strong>
+              <span>분실, 도움 요청, 응급 상황</span>
+            </div>
+          </section>
+
+          <nav class="bottom-nav">
+            <div class="nav-item active">학습</div>
+            <div class="nav-item">문장</div>
+            <div class="nav-item">반복</div>
+          </nav>
+        </div>
+      </article>
+
+      <article class="phone japanese">
+        <div class="screen">
+          <header class="app-header">
+            <div class="brand">
+              <div class="mark">日</div>
+              <div>
+                <div class="brand-title">旅の日本語</div>
+                <div class="brand-sub">Soft · Delicate · Sakura tone</div>
+              </div>
+            </div>
+            <button class="pill">PINK MODE</button>
+          </header>
+
+          <section class="hero-card">
+            <div class="section-label">
+              <span>오늘의 핵심 문장</span>
+              <span class="progress"><span></span></span>
+            </div>
+            <h2 class="phrase-main">ゆっくり話してください。</h2>
+            <p class="phrase-sub">
+              일본 여행 중 부드럽고 정중하게 부탁하는 표현입니다.
+            </p>
+            <div class="pron">윳쿠리 하나시테 쿠다사이</div>
+          </section>
+
+          <div class="actions">
+            <button class="btn primary">▶ 듣고 따라하기</button>
+            <button class="btn secondary">↻ 3번 반복</button>
+          </div>
+
+          <section class="category-grid">
+            <div class="category">
+              <strong>基本表現</strong>
+              <span>인사, 부탁, 천천히 말해달라는 표현</span>
+            </div>
+            <div class="category">
+              <strong>空港</strong>
+              <span>공항, 입국, 수하물 상황</span>
+            </div>
+            <div class="category">
+              <strong>カフェ</strong>
+              <span>주문, 좌석, 맛 표현</span>
+            </div>
+            <div class="category">
+              <strong>観光</strong>
+              <span>티켓, 사진, 길 찾기</span>
+            </div>
+          </section>
+
+          <nav class="bottom-nav">
+            <div class="nav-item active">학습</div>
+            <div class="nav-item">문장</div>
+            <div class="nav-item">반복</div>
+          </nav>
+        </div>
+      </article>
+    </section>
+
+    <p class="sample-note">
+      이 화면은 샘플 전용입니다. 마음에 들면 이 방향으로 실제 앱 전체 UI에 적용합니다.
+    </p>
+  </main>
+</body>
+</html>

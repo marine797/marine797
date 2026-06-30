@@ -1,0 +1,224 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.sample-menu {
+  min-height: 100vh;
+  padding: 28px 18px;
+  background: #f3eee7;
+  color: #1f2933;
+}
+
+.menu-wrap {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.menu-title {
+  margin: 0 0 10px;
+  font-size: 34px;
+  letter-spacing: -0.05em;
+}
+
+.menu-desc {
+  margin: 0 0 26px;
+  color: #667085;
+  line-height: 1.6;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.menu-card {
+  border-radius: 34px;
+  padding: 26px;
+  min-height: 260px;
+  box-shadow: 0 24px 60px rgba(30, 41, 59, 0.14);
+}
+
+.menu-card strong {
+  display: block;
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.menu-card p {
+  line-height: 1.6;
+}
+
+.menu-card span {
+  display: inline-flex;
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-weight: 850;
+}
+
+.menu-card.english {
+  background: linear-gradient(145deg, #14345f, #245d9d);
+  color: #eef7ff;
+}
+
+.menu-card.english span {
+  background: #dcecff;
+  color: #16345c;
+}
+
+.menu-card.japanese {
+  background: linear-gradient(145deg, #fff8fa, #ffd8e5);
+  color: #603444;
+}
+
+.menu-card.japanese span {
+  background: #b65372;
+  color: white;
+}
+
+.sample-body {
+  min-height: 100vh;
+  padding: 18px;
+}
+
+.english-body {
+  background: linear-gradient(160deg, #081827, #14345f 48%, #1d4f88);
+  color: #f4f9ff;
+}
+
+.japanese-body {
+  background: linear-gradient(160deg, #fff9fb, #ffe6ee 52%, #f7c9d8);
+  color: #53313b;
+}
+
+.phone {
+  max-width: 430px;
+  min-height: calc(100vh - 36px);
+  margin: 0 auto;
+  border-radius: 38px;
+  padding: 24px;
+}
+
+.english-phone {
+  background: rgba(255,255,255,0.10);
+  box-shadow: 0 30px 90px rgba(0,0,0,0.34);
+}
+
+.japanese-phone {
+  background: rgba(255,255,255,0.72);
+  box-shadow: 0 30px 90px rgba(179,82,113,0.20);
+}
+
+.logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 19px;
+  display: grid;
+  place-items: center;
+  font-weight: 950;
+}
+
+.english-phone .logo {
+  background: linear-gradient(145deg, #e5f2ff, #83bdf8);
+  color: #102a4d;
+}
+
+.japanese-phone .logo {
+  background: linear-gradient(145deg, #ffffff, #ffd5e2);
+  color: #b65372;
+}
+
+.top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.mode {
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 850;
+  background: rgba(255,255,255,0.2);
+}
+
+.title {
+  margin: 0;
+  font-size: 36px;
+  line-height: 1.08;
+  letter-spacing: -0.06em;
+}
+
+.subtitle {
+  margin: 14px 0 26px;
+  font-size: 15px;
+  line-height: 1.6;
+  opacity: 0.78;
+}
+
+.main-card {
+  border-radius: 34px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.english-phone .main-card {
+  background: rgba(3,18,40,0.30);
+}
+
+.japanese-phone .main-card {
+  background: rgba(255,255,255,0.78);
+}
+
+.phrase {
+  margin: 0;
+  font-size: 31px;
+  line-height: 1.18;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+button {
+  border: 0;
+  min-height: 60px;
+  border-radius: 24px;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.primary {
+  background: #e5f2ff;
+  color: #102a4d;
+}
+
+.secondary {
+  background: rgba(255,255,255,0.18);
+  color: inherit;
+}
+
+.back-link {
+  display: block;
+  max-width: 430px;
+  margin: 14px auto 0;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.72;
+}
+
+@media (max-width: 760px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+}
